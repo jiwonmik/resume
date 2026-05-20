@@ -1,0 +1,89 @@
+@use 'variables' as *;
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-group {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: border-color 0.25s;
+
+  &:hover {
+    border-color: $border-2;
+  }
+}
+
+.skill-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+
+  h4 {
+    font-family: $font-display;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text;
+    margin: 0;
+  }
+}
+
+.skill-icon {
+  color: $accent;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skill-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.skill-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.skill-name {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  color: $text;
+  letter-spacing: 0.02em;
+}
+
+.skill-pct {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $muted;
+}
+
+.skill-bar-track {
+  height: 3px;
+  background: $border-2;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, $accent 0%, $accent-2 100%);
+}

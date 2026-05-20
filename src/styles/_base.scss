@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: $bg;
+  color: $text;
+  font-family: $font-mono;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+
+  &.ko {
+    font-family: $font-ko;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 6vw 8rem;
+}

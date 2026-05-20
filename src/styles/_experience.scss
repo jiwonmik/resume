@@ -1,0 +1,251 @@
+@use 'variables' as *;
+
+.timeline {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: $border;
+    transform: translateX(-50%);
+
+    @media (max-width: 720px) {
+      left: 12px;
+    }
+  }
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  gap: 0;
+  margin-bottom: 2.5rem;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 40px 1fr;
+    margin-bottom: 2rem;
+  }
+}
+
+.timeline-card {
+  padding: 0 1.5rem;
+
+  @media (max-width: 720px) {
+    padding: 0 0 0 1rem;
+  }
+}
+
+.timeline-item:nth-child(odd) {
+  .timeline-card:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
+
+    .tags { justify-content: flex-end; }
+    .card-header { flex-direction: row-reverse; }
+
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+
+  .timeline-dot { grid-column: 2; }
+
+  .timeline-card:last-child {
+    grid-column: 3;
+    grid-row: 1;
+
+    @media (max-width: 720px) {
+      grid-column: 2;
+    }
+  }
+}
+
+.timeline-item:nth-child(even) {
+  .timeline-card:first-child {
+    grid-column: 1;
+    grid-row: 1;
+
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+
+  .timeline-dot { grid-column: 2; }
+
+  .timeline-card:last-child {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+
+    .tags { justify-content: flex-end; }
+    .card-header { flex-direction: row-reverse; }
+
+    @media (max-width: 720px) {
+      grid-column: 2;
+      text-align: left;
+
+      .tags { justify-content: flex-start; }
+      .card-header { flex-direction: row; }
+    }
+  }
+}
+
+.timeline-dot {
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 1.65rem;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 720px) {
+    grid-column: 1;
+    padding-top: 1.5rem;
+    justify-content: flex-start;
+  }
+
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: $accent;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba($accent, 0.5);
+    flex-shrink: 0;
+  }
+}
+
+.timeline-card-inner {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  transition: border-color 0.25s;
+  text-align: left;
+
+  &:hover {
+    border-color: $border-2;
+  }
+
+  .card-date {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    color: $accent;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: $accent;
+      border-radius: 50%;
+    }
+  }
+
+  h3 {
+    font-family: $font-display;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-company {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    color: $accent;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+
+    li {
+      padding: 0.2rem 0 0.2rem 1.1rem;
+      position: relative;
+      color: $muted;
+      font-size: 0.82rem;
+      line-height: 1.6;
+
+      &::before {
+        content: '–';
+        position: absolute;
+        left: 0;
+        color: $subtle;
+      }
+    }
+  }
+}
+
+.role-block {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $border;
+
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.role-label {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $subtle;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.exp-details-role {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $accent;
+  margin-bottom: 0.75rem;
+}
+
+.card-summary {
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: $muted;
+  margin-bottom: 1rem;
+}
+
+.exp-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $accent;
+  padding: 0;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.75; }
+}
+
+.exp-details {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid $border;
+}

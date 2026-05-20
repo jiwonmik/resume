@@ -1,0 +1,54 @@
+@use 'variables' as *;
+
+.pub-group {
+  margin-bottom: 2rem;
+}
+
+.pub-group-label {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $subtle;
+  margin-bottom: 0.75rem;
+}
+
+.pub-award {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $accent;
+  margin-top: 0.5rem;
+}
+
+.pub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pub-title {
+  font-family: $font-display;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $text;
+  line-height: 1.5;
+}
+
+.pub-meta {
+  font-size: 0.82rem;
+  color: $muted;
+
+  strong {
+    color: $text;
+    font-weight: 600;
+  }
+}
+
+.pub-ref {
+  font-size: 0.76rem;
+  color: $subtle;
+
+  em {
+    font-style: italic;
+  }
+}

@@ -1,0 +1,117 @@
+@use 'variables' as *;
+
+.card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 8px;
+  transition: border-color 0.25s ease;
+
+  &:hover {
+    border-color: $border-2;
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.card h3 {
+  font-family: $font-display;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $text;
+  line-height: 1.4;
+}
+
+.company {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  color: $accent;
+  margin-top: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+.date {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  color: $subtle;
+  white-space: nowrap;
+  padding-top: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.25rem;
+
+  li {
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    position: relative;
+    color: $muted;
+    font-size: 0.84rem;
+    line-height: 1.65;
+
+    &::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: $subtle;
+    }
+  }
+}
+
+.version-block {
+  margin-bottom: 1.25rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+.version-label {
+  display: inline-block;
+  font-family: $font-mono;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $accent;
+  border: 1px solid rgba($accent, 0.25);
+  background: rgba($accent, 0.05);
+  padding: 0.1rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 0.65rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+
+  span {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    padding: 0.18rem 0.6rem;
+    border: 1px solid $border-2;
+    border-radius: 3px;
+    color: $subtle;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, color 0.2s;
+
+    &:hover {
+      border-color: $muted;
+      color: $muted;
+    }
+  }
+}
