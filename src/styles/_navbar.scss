@@ -54,6 +54,24 @@
   }
 }
 
+.navbar-back {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: $font-mono;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  color: $muted;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $text;
+  }
+}
+
 .navbar-toggle {
   display: flex;
   align-items: center;

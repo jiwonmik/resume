@@ -1,4 +1,5 @@
 import type { T } from '../hooks/useLanguage';
+import { CASE_STUDY_ROUTE, AGENT_CONCURRENCY_ROUTE } from '../routes';
 
 interface Props { t: T }
 
@@ -11,8 +12,8 @@ const dataAssistant = {
   ),
   title: { en: 'Data Assistant', ko: 'Data Assistant' },
   desc: {
-    en: 'Conversational AI product for music-industry analytics. Text-to-SQL multi-agent with RAG, intent classification, credit-based usage, and production tracing via LangSmith. Reached 351 MAU with 76% monthly retention within 2 months of beta launch.',
-    ko: '음악 산업 분석을 위한 대화형 AI 제품. RAG, 의도 분류, 크레딧 기반 사용량, LangSmith 트레이싱을 갖춘 Text-to-SQL 멀티 에이전트. 베타 출시 2개월 만에 MAU 351명, 월간 재방문율 76% 달성.',
+    en: 'Conversational AI product for music-industry analytics. Text-to-SQL multi-agent with RAG, a citation system for grounded responses, intent classification, and credit-based usage. Shipped to production for 2,200+ premium users with 76% monthly retention and a 92% grounded-response rate.',
+    ko: '음악 산업 분석을 위한 대화형 AI 제품. RAG, 근거 기반 응답을 위한 Citation 시스템, 의도 분류, 크레딧 기반 사용량을 갖춘 Text-to-SQL 멀티 에이전트. 2,200+ 프리미엄 사용자 대상 프로덕션 출시, 월간 재방문율 76%, 근거 기반 응답률 92% 달성.',
   },
   tags: ['LangGraph', 'Python', 'ClickHouse', 'RabbitMQ', 'Socket.IO', 'React', 'OpenRouter'],
 };
@@ -21,6 +22,7 @@ const dataAssistantTools = [
   {
     key: 'conversation-debugger',
     badge: { en: 'Built before LangSmith', ko: 'LangSmith 이전에 직접 구축' },
+    href: undefined as string | undefined,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18" />
@@ -36,6 +38,7 @@ const dataAssistantTools = [
   {
     key: 'agent-admin',
     badge: null,
+    href: undefined as string | undefined,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -50,6 +53,39 @@ const dataAssistantTools = [
       ko: '프롬프트 편집, 모델 선택, temperature, 버저닝을 포함한 에이전트 관리용 노코드 어드민 UI. 비개발 직군의 병목 제거.',
     },
     tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
+  },
+  {
+    key: 'resilient-chat-architecture',
+    badge: { en: 'Architecture write-up', ko: '아키텍처 문서' },
+    href: CASE_STUDY_ROUTE,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <path d="M13 2 3 14h7l-1 8 11-14h-7l0-6z" />
+      </svg>
+    ),
+    title: { en: 'Resilient Real-Time Chat Architecture', ko: '복원력 있는 실시간 채팅 아키텍처' },
+    desc: {
+      en: 'Decoupled agent execution from the Socket.IO connection with an independent RabbitMQ worker so jobs survive tab close, refresh, and redeploys — with a Redis Streams adapter syncing events across instances and multi-tab state sync.',
+      ko: '에이전트 작업을 Socket.IO 연결과 분리하고 RabbitMQ 기반 독립 Worker를 도입해 탭 종료·새로고침·배포에도 작업이 지속되도록 설계. Redis Streams Adapter로 다중 인스턴스 이벤트를 동기화하고 멀티탭 상태를 맞췄습니다.',
+    },
+    tags: ['RabbitMQ', 'Redis Streams', 'Socket.IO', 'React'],
+  },
+  {
+    key: 'agent-concurrency',
+    badge: { en: 'Architecture write-up', ko: '아키텍처 문서' },
+    href: AGENT_CONCURRENCY_ROUTE,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" />
+      </svg>
+    ),
+    title: { en: 'Agent Concurrency & Async Design', ko: '에이전트 동시성 & 비동기 처리 설계' },
+    desc: {
+      en: 'Prevented duplicate execution and race conditions with an asyncio.Lock-guarded conversation registry, moved reasoning-summary calls to a fire-and-forget background task, and parallelized tool calls with asyncio.gather (capped concurrency, isolated per-tool exceptions).',
+      ko: 'asyncio.Lock으로 보호한 대화 단위 레지스트리로 중복 실행·Race Condition 방지, reasoning 요약 호출을 백그라운드 fire-and-forget 태스크로 분리, asyncio.gather로 Tool 호출을 동시 실행 수 제한·예외 격리와 함께 병렬화.',
+    },
+    tags: ['Python', 'FastAPI', 'asyncio', 'LangChain'],
   },
 ];
 
@@ -131,7 +167,18 @@ export default function Projects({ t }: Props) {
             <div className="project-card project-card--sub" key={p.key}>
               <div className="project-card-header">
                 <span className="project-icon">{p.icon}</span>
-                <h3>{t(p.title)}</h3>
+                <h3>
+                  {p.href ? (
+                    <a href={p.href} className="project-link">
+                      {t(p.title)}
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="9 18 15 12 9 6" />
+                      </svg>
+                    </a>
+                  ) : (
+                    t(p.title)
+                  )}
+                </h3>
               </div>
               {p.badge && (
                 <span className="project-badge">{t(p.badge)}</span>

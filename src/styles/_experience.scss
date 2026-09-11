@@ -249,3 +249,11 @@
   padding-top: 1.25rem;
   border-top: 1px solid $border;
 }
+
+.exp-inline-link {
+  color: $accent;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover { opacity: 0.8; }
+}

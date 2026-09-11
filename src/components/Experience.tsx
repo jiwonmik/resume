@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { T } from '../hooks/useLanguage';
+import { CASE_STUDY_ROUTE, AGENT_CONCURRENCY_ROUTE } from '../routes';
 
 interface Props { t: T }
 
@@ -86,7 +87,8 @@ export default function Experience({ t }: Props) {
                     <span className="version-label">{t({ en: 'v2 · Agent RAG + API Orchestration', ko: 'v2 · 에이전트 RAG + API 오케스트레이션' })}</span>
                     <ul>
                       <li>{t({ en: 'Reduced avg. response time by ~7s through tool call execution optimization', ko: '툴 호출 실행 최적화로 평균 응답 시간 약 7초 단축' })}</li>
-                      <li>{t({ en: 'Reached 351 MAU with 76% monthly retention within 2 months of beta launch', ko: '베타 출시 2개월 만에 MAU 351명, 월간 재방문율 76% 달성' })}</li>
+                      <li>{t({ en: 'Built a citation system that assigns unique IDs to tool results and validates in-response source citations, reaching a 92% grounded-response rate', ko: 'Tool 실행 결과에 고유 ID를 부여하고 응답 내 출처 인용을 구조화·검증하는 Citation 시스템 구축 — 근거 기반 응답률 92% 달성' })}</li>
+                      <li>{t({ en: 'Shipped to production for 2,200+ premium users with 76% monthly retention', ko: '2,200+ 프리미엄 사용자 대상 프로덕션 출시, 월간 재방문율 76% 기록' })}</li>
                       <li>{t({ en: 'Introduced intent classification for mode-based tool and model selection, reducing unnecessary compute', ko: '쿼리 의도 분류 기반 툴·모델 선택 도입 — 불필요한 연산 비용 절감' })}</li>
                       <li>{t({ en: 'Designed credit-based usage system with query-complexity estimation; integrated LangSmith for production-grade tracing', ko: '쿼리 복잡도 기반 크레딧 시스템 설계; LangSmith 기반 트레이싱·평가 도입' })}</li>
                       <li>{t({ en: 'Optimized prompt context assembly, cutting token consumption by ~20K tokens per conversation', ko: '컨텍스트 조립 최적화로 대화당 토큰 약 2만 개 절감' })}</li>
@@ -94,9 +96,35 @@ export default function Experience({ t }: Props) {
                     </ul>
                   </div>
                   <div className="version-block">
+                    <span className="version-label">{t({ en: 'Agent Concurrency & Async Optimization', ko: '에이전트 동시성 및 비동기 처리 최적화' })}</span>
+                    <ul>
+                      <li>{t({ en: 'Ran independent tools in parallel via asyncio.gather with a concurrency cap, cutting per-step agent latency and server load', ko: 'asyncio.gather 기반 독립 Tool 병렬 실행과 동시 실행 수 제한으로 Agent 단계별 레이턴시 및 서버 부하 최적화' })}</li>
+                      <li>{t({ en: 'Isolated exceptions per tool so the agent keeps working from remaining results even when one tool fails', ko: '개별 Tool 예외를 격리하여 일부 Tool 실패에도 Agent가 나머지 결과를 기반으로 작업을 지속하도록 설계' })}</li>
+                      <li>
+                        {t({
+                          en: 'Managed per-conversation execution state with an asyncio.Lock-guarded registry to prevent race conditions between duplicate and stop requests — ',
+                          ko: 'asyncio.Lock으로 보호한 대화 단위 실행 상태 레지스트리로 중복 요청·Stop 요청 간 Race Condition 방지 — ',
+                        })}
+                        <a href={AGENT_CONCURRENCY_ROUTE} className="exp-inline-link">
+                          {t({ en: 'read the write-up', ko: '아키텍처 문서 보기' })}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="version-block">
                     <span className="version-label">{t({ en: 'Shared Infrastructure', ko: '공통 인프라' })}</span>
                     <ul>
-                      <li>{t({ en: 'Architected real-time messaging: RabbitMQ decouples agent workflows; Redis adapter syncs Socket.IO events across ELB instances', ko: 'RabbitMQ로 워크플로우 분리, Redis 어댑터로 ELB 뒤 인스턴스 간 Socket.IO 이벤트 동기화' })}</li>
+                      <li>
+                        {t({
+                          en: 'Decoupled agent execution from the Socket.IO connection with an independent RabbitMQ worker so jobs survive tab close, refresh, and redeploys — ',
+                          ko: '에이전트 작업을 Socket.IO 연결과 분리하고 RabbitMQ 기반 독립 Worker를 도입하여 탭 종료·새로고침·배포에도 작업이 지속되도록 개선 — ',
+                        })}
+                        <a href={CASE_STUDY_ROUTE} className="exp-inline-link">
+                          {t({ en: 'read the write-up', ko: '아키텍처 문서 보기' })}
+                        </a>
+                      </li>
+                      <li>{t({ en: 'Built a Redis Streams adapter for multi-instance event delivery, enabling a scalable real-time agent execution environment', ko: 'Redis Streams Adapter 기반 다중 인스턴스 이벤트 전달, 확장 가능한 실시간 에이전트 실행 환경 구축' })}</li>
+                      <li>{t({ en: 'Streamed tool planning, calls, and step results as Socket events, with background-task-driven progress to improve perceived wait time', ko: '에이전트의 Tool 계획·호출·단계별 결과를 Socket 이벤트로 스트리밍하고, 백그라운드 태스크 기반 진행 상태 생성으로 사용자 대기 경험 개선' })}</li>
                       <li>{t({ en: 'Established automated regression testing with LLM-as-Judge for response quality scoring', ko: 'LLM-as-Judge 기반 자동화 회귀 테스트 프레임워크 구축' })}</li>
                     </ul>
                   </div>

@@ -60,20 +60,20 @@ export default function About({ t }: Props) {
 
           <div className="about-stats">
             <div className="stat-item">
-              <p className="stat-value">351</p>
-              <p className="stat-label">{t({ en: 'Peak MAU', ko: '최대 MAU' })}</p>
+              <p className="stat-value">2,200+</p>
+              <p className="stat-label">{t({ en: 'Premium Users', ko: '프리미엄 사용자' })}</p>
             </div>
             <div className="stat-item">
               <p className="stat-value">76%</p>
               <p className="stat-label">{t({ en: 'Monthly Retention', ko: '월간 재방문율' })}</p>
             </div>
             <div className="stat-item">
-              <p className="stat-value">~7s</p>
-              <p className="stat-label">{t({ en: 'Response Time Cut', ko: '응답 시간 단축' })}</p>
+              <p className="stat-value">92%</p>
+              <p className="stat-label">{t({ en: 'Grounded Response Rate', ko: '근거 기반 응답률' })}</p>
             </div>
             <div className="stat-item">
-              <p className="stat-value">20K</p>
-              <p className="stat-label">{t({ en: 'Tokens Saved / Conv.', ko: '대화당 토큰 절감' })}</p>
+              <p className="stat-value">~7s</p>
+              <p className="stat-label">{t({ en: 'Response Time Cut', ko: '응답 시간 단축' })}</p>
             </div>
           </div>
         </div>
