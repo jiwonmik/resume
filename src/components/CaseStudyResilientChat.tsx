@@ -68,7 +68,8 @@ const CASE_STUDY_HTML = `
         <text x="301" y="230" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--accent)">스트리밍 응답 (room)</text>
 
         <line x1="180" y1="245" x2="422" y2="245" stroke="currentColor" stroke-width="1.3" marker-end="url(#ah-ink)"></line>
-        <text x="301" y="262" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">REST POST /ask</text>
+        <text x="301" y="262" text-anchor="middle" font-family="var(--font-mono)" font-size="9.5" fill="var(--ink-soft)">REST POST /user/message</text>
+        <text x="301" y="274" text-anchor="middle" font-family="var(--font-mono)" font-size="9.5" fill="var(--ink-soft)">(메시지 DB 저장)</text>
 
         <path d="M 500 165 L 500 55 L 912 55 L 912 348" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#ah-ink)"></path>
         <text x="706" y="47" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">재접속 시 REST GET /messages → DB 조회</text>
